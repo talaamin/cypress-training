@@ -1,18 +1,30 @@
 /// <reference types="cypress" />
 
-it("should submit the form successfully", () => {
-  cy.visit("https://www.seleniumeasy.com/test/input-form-demo.html");
-  cy.contains("Input form with validations").should("be.visible");
-  cy.get('[name="first_name"]').type("Tala");
-  cy.get('[name="last_name"]').type("Qawasmi");
-  cy.get('[name="email"]').type("test@test.com");
-  cy.get('[name="phone"]').type("1234567890");
-  cy.get('[name="address"]').type("Al Masayef");
-  cy.get('[name="city"]').type("Ramallah");
-  cy.get('[name="state"]').select("New York");
-  cy.get('[name="zip"]').type("8080");
-  cy.get('[name="website"]').type("google.com");
-  cy.get(".radio").find('[value="yes"]').click();
-  cy.get('[name="comment"]').type("cool description");
-  cy.get(".btn-default").click();
+it("should login successfully", () => {
+  cy.visit("https://the-internet.herokuapp.com/login");
+  cy.get('input[id="username"]').type("tomsmith");
+  cy.get('input[id="password"]').type("SuperSecretPassword!");
+  cy.get(".fa-sign-in").click();
+  cy.get('[id="flash"]')
+    .should("be.visible")
+    .and("contain", "You logged into a secure area!")
+    .and("have.css", "color", "rgb(255, 255, 255)");
+});
+
+it("should logout successfully", () => {
+  cy.get(".icon-signout").click();
+  cy.get('[id="flash"]')
+    .should("be.visible")
+    .and("contain", "You logged out of the secure area!")
+    .and("have.css", "color", "rgb(255, 255, 255)");
+});
+
+it("should show error messages for invalid credentials", () => {
+  cy.visit("https://the-internet.herokuapp.com/login");
+  cy.get('input[id="username"]').type("tomsmith1");
+  cy.get('input[id="password"]').type("SuperSecretPassword!1");
+  cy.get(".fa-sign-in").click();
+  cy.get('[id="flash"]')
+    .should("be.visible")
+    .and("contain", "Your username is invalid!");
 });
