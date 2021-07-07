@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "cypress": "^7.6.0"
+    "cypress": "^7.6.0",
+    "cypress-file-upload": "^5.0.8"
   },
   "devDependencies": {},
   "scripts": {
@@ -13,6 +14,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Tala Qawasmi",
   "license": "ISC"
 }
