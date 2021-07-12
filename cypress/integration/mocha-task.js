@@ -1,3 +1,4 @@
+var assert = require("assert");
 const cartItems = ["Orange", "Banana", "Apple", "Strawberry"];
 it("cart should contain 4 items", () => {
   assert.equal(cartItems.length, 4);
